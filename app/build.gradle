@@ -16,6 +16,10 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary= true
+
+        ndk{
+            moduleName "Java2C" //so文件名
+        }
     }
     buildTypes {
         release {
@@ -27,6 +31,12 @@ android {
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
+    }
+    //解决ndk-build生成so文件之后产生的compileDebugNdk的问题 即可运行项目获取navite方法
+    tasks.all { task ->
+        if (task.name.startsWith('compile') && task.name.endsWith('Ndk')) {
+            task.enabled = false
+        }
     }
 }
 
