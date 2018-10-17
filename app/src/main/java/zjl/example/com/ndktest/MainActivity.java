@@ -4,13 +4,17 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
+    RecyclerView example_rv;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -42,6 +46,15 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         Log.e("============", new Java2CJNI().java2C());
+        Toast.makeText(this,new Java2CJNI().java2C(),Toast.LENGTH_SHORT).show();
+
+        //轻量级的recyclerview测试
+        RecyclerViewTest();
+    }
+
+    private void RecyclerViewTest() {
+        example_rv = findViewById(R.id.example_rv);
+
     }
 
 }
